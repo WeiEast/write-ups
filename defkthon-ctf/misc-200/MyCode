@@ -1,0 +1,22 @@
+#!/usr/bin/python
+#-*- coding:utf-8 -*-
+
+import Image
+w,h =  122,503
+img = Image.new('RGB', (w, h))
+pixels = img.load()
+f = open("flag.txt", "r")
+
+for a in range(h-1, -1, -1):
+    for b in range(w):
+        line = f.readline()
+        if not line:
+            break
+        rgb = line.split(',')
+        R = int(rgb[0])
+        G = int(rgb[1])
+        B = int(rgb[2][0:3])
+        pixels[int(b), int(a)] = (R, G, B)
+    if not line:
+        break
+img.show()
